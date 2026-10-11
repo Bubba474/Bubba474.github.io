@@ -3,66 +3,297 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bernardo Rodrigues | Segurança Ofensiva e DevSecOps</title>
-<meta name="description" content="Portfólio profissional de Bernardo Rodrigues: segurança ofensiva, Active Directory Red Team, DevSecOps e automação.">
+<title>Bernardo Rodrigues · Red Team &amp; DevSecOps</title>
+<meta name="description" content="Bernardo Pereira Rodrigues — Cybersecurity Analyst, DevSecOps e Red Teamer certificado AD-RTS. Active Directory attack paths, AppSec e detection engineering.">
+<meta name="author" content="Bernardo Pereira Rodrigues">
+<meta property="og:title" content="Bernardo Rodrigues · Red Team &amp; DevSecOps">
+<meta property="og:description" content="Cybersecurity Analyst · DevSecOps · Red Teamer certificado AD-RTS.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f1117;--fg:#e6e8ee;--mut:#9aa3b2;--card:#171a23;--acc:#7b83ff;--bd:#262b38}
-@media(prefers-color-scheme:light){:root{--bg:#fff;--fg:#14161c;--mut:#5b6472;--card:#f5f6fa;--acc:#4950bc;--bd:#e2e5ee}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif}
-main{max-width:860px;margin:0 auto;padding:48px 16px}
-h1{font-size:2rem;margin:0}h2{margin:40px 0 12px;font-size:1.15rem;color:var(--acc);text-transform:uppercase;letter-spacing:.06em}
-p{margin:.4em 0}.mut{color:var(--mut)}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px}
-.card b{display:block;margin-bottom:4px}
-.tags span{display:inline-block;margin:0 6px 6px 0;padding:2px 10px;border:1px solid var(--bd);border-radius:99px;font-size:.85rem}
-a{color:var(--acc)}
-ul{padding-left:1.1em;margin:.3em 0}
+:root{
+  --bg:#0a0c10; --bg2:#0e1117; --panel:#12151d; --panel2:#161a24;
+  --fg:#e8ecf4; --mut:#8b93a7; --bd:#20252f;
+  --acc:#39ff9e;      /* neon green */
+  --acc2:#ff3b57;     /* red team red */
+  --glow:rgba(57,255,158,.35);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter',system-ui,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--acc);text-decoration:none;transition:.2s}
+a:hover{color:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+section{padding:72px 0;border-bottom:1px solid var(--bd)}
+.eyebrow{font:600 .8rem var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--acc)}
+h1{font:800 clamp(2.4rem,7vw,4.2rem)/1.05 var(--sans);letter-spacing:-.02em}
+h2{font:800 clamp(1.5rem,4vw,2rem)/1.1 var(--sans);letter-spacing:-.01em;margin-bottom:8px}
+h3{font:700 1.1rem var(--sans)}
+p{color:var(--mut)}
+.mono{font-family:var(--mono)}
+
+/* animated background grid */
+.bg-fx{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 500px at 80% -10%,rgba(57,255,158,.08),transparent 60%),
+  radial-gradient(700px 500px at 0% 20%,rgba(255,59,87,.06),transparent 55%),
+  linear-gradient(var(--bg),var(--bg2));
+}
+.bg-fx::after{content:"";position:absolute;inset:0;opacity:.35;
+  background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);
+  background-size:44px 44px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(10,12,16,.72);border-bottom:1px solid var(--bd)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font:700 1rem var(--mono);color:#fff}
+.brand span{color:var(--acc)}
+.navlinks{display:flex;gap:26px;font:500 .92rem var(--sans)}
+.navlinks a{color:var(--mut)}
+.navlinks a:hover{color:var(--fg)}
+@media(max-width:640px){.navlinks{display:none}}
+
+/* hero */
+.hero{padding:96px 0 84px;border-bottom:1px solid var(--bd)}
+.term{display:inline-flex;align-items:center;gap:8px;font:500 .85rem var(--mono);color:var(--mut);
+  background:var(--panel);border:1px solid var(--bd);border-radius:99px;padding:6px 14px;margin-bottom:26px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--glow);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero h1 b{background:linear-gradient(120deg,var(--acc),#a6ffd4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.role{font:600 clamp(1rem,2.6vw,1.35rem) var(--mono);color:var(--fg);margin:16px 0 6px;min-height:1.6em}
+.role .cursor{display:inline-block;width:10px;background:var(--acc);margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lede{max-width:620px;margin:18px 0 32px;font-size:1.08rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .95rem var(--sans);padding:11px 20px;border-radius:10px;border:1px solid var(--bd);background:var(--panel);color:var(--fg)}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc);color:#fff}
+.btn.primary{background:var(--acc);color:#07130d;border-color:var(--acc);box-shadow:0 8px 30px -8px var(--glow)}
+.btn.primary:hover{color:#07130d;filter:brightness(1.08)}
+.stats{display:flex;flex-wrap:wrap;gap:32px;margin-top:44px}
+.stat b{display:block;font:800 1.9rem var(--sans);color:#fff;line-height:1}
+.stat span{font:500 .82rem var(--mono);color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+
+/* cert banner */
+.cert{display:flex;gap:18px;align-items:flex-start;background:
+  linear-gradient(135deg,rgba(255,59,87,.10),rgba(57,255,158,.06));
+  border:1px solid var(--bd);border-left:3px solid var(--acc2);border-radius:14px;padding:22px 24px}
+.cert .badge{flex:0 0 auto;width:54px;height:54px;border-radius:12px;display:grid;place-items:center;
+  background:#1a0d10;border:1px solid var(--acc2);font:800 .8rem var(--mono);color:var(--acc2);text-align:center;line-height:1}
+.cert ul{margin:10px 0 0;padding-left:18px;color:var(--mut);columns:2;column-gap:28px}
+.cert li{margin:3px 0;break-inside:avoid}
+@media(max-width:640px){.cert ul{columns:1}}
+
+/* projects */
+.cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.proj{position:relative;background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:22px;transition:.25s;overflow:hidden}
+.proj::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--acc),transparent);opacity:0;transition:.25s}
+.proj:hover{transform:translateY(-4px);border-color:#2e3542}
+.proj:hover::before{opacity:1}
+.proj .ico{font-size:1.6rem}
+.proj h3{margin:10px 0 6px}
+.proj p{font-size:.95rem}
+.proj .tags{margin-top:14px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font:500 .76rem var(--mono);color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:3px 10px}
+.proj .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 .9rem var(--sans);color:var(--acc)}
+
+/* skills */
+.skillcols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.skillcard{background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:18px}
+.skillcard h3{font:700 .8rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.skillcard.off h3{color:var(--acc2)}
+
+/* experience */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--bd)}
+.job{position:relative;padding:4px 0 26px}
+.job::before{content:"";position:absolute;left:-26px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--bg),0 0 12px var(--glow)}
+.job .top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
+.job .co{font:600 .85rem var(--mono);color:var(--mut)}
+.job ul{margin:8px 0 0;padding-left:18px;color:var(--mut)}
+.job li{margin:3px 0}
+
+/* footer */
+footer{padding:60px 0 50px;text-align:center}
+footer .cta{justify-content:center}
+.fine{margin-top:26px;font:500 .8rem var(--mono);color:var(--mut)}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.dot,.role .cursor{animation:none}}
 </style>
 </head>
 <body>
-<main>
-<header>
-<h1>Bernardo Rodrigues</h1>
-<p class="mut">Segurança Ofensiva · Active Directory Red Team · DevSecOps · Automação</p>
-<p>
-<a href="https://github.com/Bubba474">GitHub</a> ·
-<a href="mailto:bernardopereirarodrigues445@gmail.com">E-mail</a>
-</p>
-</header>
+<div class="bg-fx"></div>
 
-<h2>Sobre</h2>
-<p>Profissional de tecnologia com atuação prática em segurança da informação, unindo testes ofensivos autorizados, engenharia de segurança em pipelines e automação de processos. Cursando Engenharia de Cibersegurança (Infnet).</p>
+<nav><div class="wrap">
+  <div class="brand">bernardo<span>@</span>cyber<span>:~$</span></div>
+  <div class="navlinks">
+    <a href="#sobre">sobre</a>
+    <a href="#cert">certificação</a>
+    <a href="#projetos">projetos</a>
+    <a href="#skills">skills</a>
+    <a href="#contato">contato</a>
+  </div>
+</div></nav>
 
-<h2>Certificações</h2>
-<div class="grid">
-<div class="card"><b>Certified Active Directory Red Team Specialist (AD-RTS)</b><span class="mut">CyberWarFare Labs · 2026 · credencial ADRTS-6ab8124fce6365c3b4961975</span></div>
-<div class="card"><b>6º Fórum ITL de Inovação do Transporte</b><span class="mut">Cibersegurança e Gestão de Riscos · ITL · 2026 · 5h</span></div>
-<div class="card"><b>Formações Alura em segurança</b><span class="mut">Pentest web, firewall/WAF/SIEM, proxy reverso/SSH/DNS, modelagem de ameaças, segurança web em Java, Cloud Security, Cibersegurança</span></div>
-</div>
+<header class="hero"><div class="wrap">
+  <div class="term"><span class="dot"></span><span class="mono">root@adlab:~# whoami</span></div>
+  <h1>Bernardo <b>Rodrigues</b></h1>
+  <div class="role mono" id="role"><span class="cursor">&nbsp;</span></div>
+  <p class="lede">Profissional de segurança que atua nos dois lados: <strong style="color:var(--fg)">construo controles DevSecOps</strong> que protegem 68 repositórios corporativos e <strong style="color:var(--fg)">penso como adversário</strong> em Active Directory, AppSec e detection engineering.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/Bubba474" target="_blank" rel="noopener">⟶ Ver no GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/bernardorodriguescyber" target="_blank" rel="noopener">in · LinkedIn</a>
+    <a class="btn" href="mailto:bernardopereirarodrigues445@gmail.com">✉ Email</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>AD-RTS</b><span>Certified Red Team</span></div>
+    <div class="stat"><b>68</b><span>repos protegidos</span></div>
+    <div class="stat"><b>164K+</b><span>findings tratados</span></div>
+    <div class="stat"><b>106</b><span>endpoints EDR</span></div>
+  </div>
+</div></header>
 
-<h2>Projetos profissionais</h2>
-<div class="grid">
-<div class="card"><b>Programa de segurança ofensiva e conscientização</b>Pentest autorizado, campanha de phishing educativa e relatórios executivos e técnicos com classificação de risco e recomendações.</div>
-<div class="card"><b>Pipeline DevSecOps contínuo</b>Varredura automatizada de código em dezenas de repositórios, consolidação de achados e acompanhamento de correções.</div>
-<div class="card"><b>Prevenção de vazamento de dados em IA</b>Monitoramento do uso de ferramentas de IA generativa para proteger informações sensíveis.</div>
-<div class="card"><b>Automação de processos de TI</b>Integrações entre ITSM, diretório corporativo, EDR e nuvem, reduzindo trabalho manual e padronizando fluxos.</div>
-</div>
+<section id="sobre"><div class="wrap reveal">
+  <div class="eyebrow">01 · sobre</div>
+  <h2>Defensor que entende o ataque</h2>
+  <p style="max-width:720px;font-size:1.05rem">Atuo como <strong style="color:var(--fg)">Information Security Assistant na Gestão SIAN</strong>, com foco em DevSecOps, gestão de vulnerabilidades e automação. Em paralelo, construo um histórico sólido em segurança ofensiva — sou <strong style="color:var(--fg)">certificado AD-RTS (Certified AD Red Team Specialist)</strong> pela CyberWarfare Labs e curso Engenharia de Cibersegurança no Instituto Infnet. Minha abordagem une as duas visões: todo ataque que estudo vira também uma regra de detecção.</p>
+</div></section>
 
-<h2>Competências</h2>
-<div class="tags">
-<span>Burp Suite</span><span>Nmap</span><span>Nuclei</span><span>ffuf</span><span>Metasploit</span><span>SQLmap</span><span>Nikto</span><span>Gobuster</span><span>Hydra</span><span>BloodHound</span><span>Impacket</span><span>CrackMapExec</span><span>Responder</span><span>Wireshark</span><span>Gophish</span>
-<span>Active Directory</span><span>AD CS</span><span>Web e APIs</span><span>Movimento lateral</span><span>Modelagem de ameaças</span>
-<span>Python</span><span>PowerShell</span><span>Bash</span><span>Git e GitHub Actions</span><span>Semgrep</span><span>DefectDojo</span><span>GCP</span><span>Docker</span><span>Entra ID</span>
-</div>
+<section id="cert"><div class="wrap reveal">
+  <div class="eyebrow">02 · certificação em destaque</div>
+  <h2>AD-RTS — Full Attack Simulation</h2>
+  <p style="margin-bottom:20px">Engajamento simulado contra ambiente corporativo Windows / Active Directory (CyberWarfare Labs, 2026).</p>
+  <div class="cert">
+    <div class="badge">AD<br>RTS</div>
+    <div>
+      <h3 style="color:#fff">Certified AD Red Team Specialist</h3>
+      <ul>
+        <li>RCE via desserialização de <b style="color:var(--fg)">.NET ViewState</b> em IIS</li>
+        <li><b style="color:var(--fg)">Kerberoasting</b> e AS-REP Roasting para acesso inicial</li>
+        <li>Abuso de <b style="color:var(--fg)">AD CS (ESC1)</b> → certificado de Domain Admin</li>
+        <li>Dump de <b style="color:var(--fg)">LSASS</b> e descriptografia <b style="color:var(--fg)">DPAPI</b></li>
+        <li>Movimentação lateral até <b style="color:var(--fg)">Domain Admin</b></li>
+        <li>Abuso de <b style="color:var(--fg)">Exchange Impersonation</b></li>
+        <li>Pivot e execução em hypervisor <b style="color:var(--fg)">ESXi</b></li>
+        <li>Escalonamento local de privilégios</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
 
-<h2>Como trabalho</h2>
-<ul>
-<li>Todos os testes com autorização formal e dentro do escopo definido.</li>
-<li>Relatórios claros, priorizados por risco e orientados à correção.</li>
-<li>Foco em resultado e comunicação objetiva com times técnicos e gestão.</li>
-</ul>
-</main>
+<section id="projetos"><div class="wrap reveal">
+  <div class="eyebrow">03 · projetos</div>
+  <h2>O que eu construo</h2>
+  <p style="margin-bottom:26px">Projetos públicos, reprodutíveis e com disclaimer de uso autorizado.</p>
+  <div class="cards">
+    <a class="proj" href="https://github.com/Bubba474/adlab-forge" target="_blank" rel="noopener">
+      <div class="ico">🏰</div><h3>adlab-forge</h3>
+      <p>Home lab de Active Directory reproduzível com matriz ataque→detecção mapeada ao MITRE ATT&amp;CK e regras Sigma prontas para SIEM.</p>
+      <div class="tags"><span>Active Directory</span><span>MITRE ATT&amp;CK</span><span>Sigma</span><span>Detection</span></div>
+      <span class="go">explorar repo ⟶</span>
+    </a>
+    <a class="proj" href="https://github.com/Bubba474/appsec-toolkit" target="_blank" rel="noopener">
+      <div class="ico">🔎</div><h3>appsec-toolkit</h3>
+      <p><span class="mono">httpposture</span>: analisador de postura de segurança HTTP (headers, TLS, cookies). Python tipado, 16 testes, mypy strict e CI.</p>
+      <div class="tags"><span>Python</span><span>AppSec</span><span>OWASP</span><span>CI/CD</span></div>
+      <span class="go">explorar repo ⟶</span>
+    </a>
+    <a class="proj" href="https://github.com/Bubba474/ctf-writeups" target="_blank" rel="noopener">
+      <div class="ico">🚩</div><h3>ctf-writeups</h3>
+      <p>Coletânea de writeups de CTF com metodologia padronizada e foco em causa raiz e mitigação no mundo real.</p>
+      <div class="tags"><span>CTF</span><span>Web</span><span>Pentest</span><span>Writeups</span></div>
+      <span class="go">explorar repo ⟶</span>
+    </a>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap reveal">
+  <div class="eyebrow">04 · arsenal</div>
+  <h2>Stack &amp; ferramentas</h2>
+  <div class="skillcols" style="margin-top:22px">
+    <div class="skillcard off"><h3>Ofensivo</h3><div class="tags">
+      <span>Kali Linux</span><span>Nmap</span><span>Burp Suite</span><span>Impacket</span><span>Certipy</span><span>Kerberoasting</span><span>AD CS Abuse</span><span>OWASP Top 10</span>
+    </div></div>
+    <div class="skillcard"><h3>DevSecOps</h3><div class="tags">
+      <span>GitHub Actions</span><span>Semgrep</span><span>DefectDojo</span><span>Gitleaks</span><span>Trivy</span>
+    </div></div>
+    <div class="skillcard"><h3>Defensivo</h3><div class="tags">
+      <span>SentinelOne EDR</span><span>DLP</span><span>SIEM</span><span>Log Analysis</span><span>Hardening</span>
+    </div></div>
+    <div class="skillcard"><h3>Cloud &amp; Identidade</h3><div class="tags">
+      <span>GCP</span><span>Entra ID</span><span>SSO</span><span>MS Graph</span><span>SharePoint</span>
+    </div></div>
+    <div class="skillcard"><h3>Automação</h3><div class="tags">
+      <span>Python</span><span>Bash</span><span>Selenium</span><span>Prometheus</span><span>API Automation</span>
+    </div></div>
+  </div>
+</div></section>
+
+<section id="exp"><div class="wrap reveal">
+  <div class="eyebrow">05 · trajetória</div>
+  <h2>Experiência</h2>
+  <div class="tl" style="margin-top:24px">
+    <div class="job">
+      <div class="top"><h3>Information Security Assistant</h3><span class="co">Gestão SIAN · atual</span></div>
+      <ul>
+        <li>Controles DevSecOps em 68 repositórios (GitHub Actions, Semgrep, DefectDojo) com security gates no CI/CD.</li>
+        <li>Fluxo de identificação e mitigação de 164 mil+ findings via scanning automatizado.</li>
+        <li>Apoio ao deploy do SentinelOne EDR em 106 endpoints; IAM com Entra ID, SSO, MS Graph.</li>
+        <li>Piloto de DLP orientado por IA integrado a FortiGate e DefectDojo; automações em Python.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="top"><h3>Cybersecurity Specialist &amp; Ethical Hacker</h3><span class="co">Freelancer</span></div>
+      <ul>
+        <li>Pentests em aplicações web e redes; mapeamento de superfície e recomendação de contramedidas.</li>
+        <li>Hardening de sistemas e automação de acesso/monitoramento em Python e Selenium.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="top"><h3>Engenharia de Cibersegurança</h3><span class="co">Instituto Infnet · em andamento</span></div>
+      <ul><li>Formação superior em andamento, complementada por cursos de pentest, SIEM, modelagem de ameaças e cloud security.</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<footer id="contato"><div class="wrap reveal">
+  <div class="eyebrow" style="justify-content:center">06 · contato</div>
+  <h2>Vamos conversar</h2>
+  <p style="margin:8px 0 26px">Aberto a oportunidades em Red Team, Pentest e AppSec.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://www.linkedin.com/in/bernardorodriguescyber" target="_blank" rel="noopener">in · LinkedIn</a>
+    <a class="btn" href="https://github.com/Bubba474" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="mailto:bernardopereirarodrigues445@gmail.com">✉ Email</a>
+  </div>
+  <p class="fine">📍 Goiânia, GO · Brasil &nbsp;·&nbsp; ⚖️ Conteúdo educacional e defensivo, em ambientes autorizados.</p>
+</div></footer>
+
+<script>
+// typing effect
+(function(){
+  var roles=["Cybersecurity Analyst","DevSecOps Engineer","Red Teamer · AD-RTS","AppSec & Detection"];
+  var el=document.getElementById('role'),cur=el.querySelector('.cursor');
+  var i=0,j=0,del=false;
+  function tick(){
+    var w=roles[i];
+    j+=del?-1:1;
+    el.textContent=w.slice(0,j);el.appendChild(cur);
+    if(!del&&j===w.length){del=true;setTimeout(tick,1400);return;}
+    if(del&&j===0){del=false;i=(i+1)%roles.length;}
+    setTimeout(tick,del?40:75);
+  }
+  tick();
+})();
+// scroll reveal
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(n){io.observe(n);});
+})();
+</script>
 </body>
 </html>
