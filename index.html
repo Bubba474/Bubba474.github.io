@@ -101,6 +101,21 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .tags span{font:500 .76rem var(--mono);color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:3px 10px}
 .proj .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 .9rem var(--sans);color:var(--acc)}
 
+/* certs */
+.certgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:26px}
+.certcard{display:flex;gap:14px;background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:18px;transition:.2s}
+.certcard:hover{transform:translateY(-3px);border-color:#2e3542}
+.certcard .mk{flex:0 0 auto;width:46px;height:46px;border-radius:10px;display:grid;place-items:center;font:800 .72rem var(--mono);text-align:center;line-height:1.05;background:#101722;border:1px solid var(--bd);color:var(--acc)}
+.certcard.red .mk{color:var(--acc2);border-color:var(--acc2);background:#1a0d10}
+.certcard h3{font-size:1rem}
+.certcard p{font:500 .82rem var(--mono);color:var(--mut);margin-top:3px}
+.courses{background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:6px 20px}
+.courses li{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--bd)}
+.courses li:last-child{border-bottom:0}
+.courses .nm{color:var(--fg);font-weight:500}
+.courses .meta{font:500 .78rem var(--mono);color:var(--mut);white-space:nowrap}
+.courses .src{font:600 .72rem var(--mono);color:var(--acc);margin-right:10px}
+
 /* skills */
 .skillcols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 .skillcard{background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:18px}
@@ -133,7 +148,7 @@ footer .cta{justify-content:center}
   <div class="brand">bernardo<span>@</span>cyber<span>:~$</span></div>
   <div class="navlinks">
     <a href="#sobre">sobre</a>
-    <a href="#cert">certificação</a>
+    <a href="#certs">certificações</a>
     <a href="#projetos">projetos</a>
     <a href="#skills">skills</a>
     <a href="#contato">contato</a>
@@ -186,8 +201,32 @@ footer .cta{justify-content:center}
   </div>
 </div></section>
 
+<section id="certs"><div class="wrap reveal">
+  <div class="eyebrow">03 · certificações</div>
+  <h2>Certificações &amp; cursos</h2>
+  <p style="margin-bottom:24px">Credenciais profissionais e formação técnica contínua.</p>
+  <div class="certgrid">
+    <div class="certcard red"><div class="mk">AD<br>RTS</div><div>
+      <h3>Certified AD Red Team Specialist</h3><p>CyberWarfare Labs · 2026</p></div></div>
+    <div class="certcard red"><div class="mk">C3<br>SA</div><div>
+      <h3>Certified Cyber Security Analyst</h3><p>CyberWarfare Labs · 2026</p></div></div>
+    <div class="certcard"><div class="mk">CISCO</div><div>
+      <h3>Ethical Hacker</h3><p>Cisco Networking Academy · 2026</p></div></div>
+  </div>
+  <ul class="courses">
+    <li><span><span class="src">ALURA</span><span class="nm">Pentest: explorando vulnerabilidades em aplicações web</span></span><span class="meta">nov/2025 · 10h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Segurança de rede: Firewall, WAF e SIEM</span></span><span class="meta">nov/2025 · 10h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Segurança de rede: Proxy reverso, SSH e DNS</span></span><span class="meta">dez/2025 · 8h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Modelagem de ameaças: riscos na concepção do software</span></span><span class="meta">dez/2025 · 10h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Segurança web em Java: SQL Injection e força bruta</span></span><span class="meta">jan/2026 · 8h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Segurança web em Java II: XSS, Mass Assignment e Uploads</span></span><span class="meta">jan/2026 · 6h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Carreira Cloud Security: primeiros passos</span></span><span class="meta">fev/2026 · 2h</span></li>
+    <li><span><span class="src">ALURA</span><span class="nm">Cibersegurança: fundamentos e práticas integradas</span></span><span class="meta">abr/2026 · 12h</span></li>
+  </ul>
+</div></section>
+
 <section id="projetos"><div class="wrap reveal">
-  <div class="eyebrow">03 · projetos</div>
+  <div class="eyebrow">04 · projetos</div>
   <h2>O que eu construo</h2>
   <p style="margin-bottom:26px">Projetos públicos, reprodutíveis e com disclaimer de uso autorizado.</p>
   <div class="cards">
@@ -213,7 +252,7 @@ footer .cta{justify-content:center}
 </div></section>
 
 <section id="skills"><div class="wrap reveal">
-  <div class="eyebrow">04 · arsenal</div>
+  <div class="eyebrow">05 · arsenal</div>
   <h2>Stack &amp; ferramentas</h2>
   <div class="skillcols" style="margin-top:22px">
     <div class="skillcard off"><h3>Ofensivo</h3><div class="tags">
@@ -235,7 +274,7 @@ footer .cta{justify-content:center}
 </div></section>
 
 <section id="exp"><div class="wrap reveal">
-  <div class="eyebrow">05 · trajetória</div>
+  <div class="eyebrow">06 · trajetória</div>
   <h2>Experiência</h2>
   <div class="tl" style="margin-top:24px">
     <div class="job">
@@ -262,7 +301,7 @@ footer .cta{justify-content:center}
 </div></section>
 
 <footer id="contato"><div class="wrap reveal">
-  <div class="eyebrow" style="justify-content:center">06 · contato</div>
+  <div class="eyebrow" style="justify-content:center">07 · contato</div>
   <h2>Vamos conversar</h2>
   <p style="margin:8px 0 26px">Aberto a oportunidades em Red Team, Pentest e AppSec.</p>
   <div class="cta">
